@@ -1,18 +1,18 @@
 namespace :javascript do
   desc "Install JavaScript dependencies"
   task :install do
-    unless system "yarn install"
-      raise "jsbundling-rails: Command install failed, ensure yarn is installed"
+    unless system "pnpm install"
+      raise "jsbundling-rails: Command install failed, ensure pnpm is installed"
     end
   end
 
   desc "Build your JavaScript bundle"
   build_task = task :build do
-    unless system "yarn build"
-      raise "jsbundling-rails: Command build failed, ensure `yarn build` runs without errors"
+    unless system "pnpm build"
+      raise "jsbundling-rails: Command build failed, ensure `pnpm build` runs without errors"
     end
   end
-  build_task.prereqs << :install unless ENV["SKIP_YARN_INSTALL"]
+  build_task.prereqs << :install unless ENV["SKIP_PNPM_INSTALL"]
 end
 
 unless ENV["SKIP_JS_BUILD"]
